@@ -1,0 +1,413 @@
+/* 1.GRID =============*/
+$width: 100%
+$gutter: 10px
+$columns: 12
+
+.my-contain
+	margin-left: auto
+	margin-right: auto
+	padding-left: $gutter
+	padding-right: $gutter
+	.my-row		
+		margin-left: $gutter
+		margin-right: $gutter
+		+clr
+		&>[class*="col-"]
+			position: relative
+			min-height: 1px
+			float: left
+
+@for $i from 1 through $columns
+	.col-#{$i}
+		width: (($width / $columns) * $i)
+/* 1.GRID END =============*/   
+
+
+$g-color: #1b9c76
+
+/* 1. MAIN ================== */
+
+.main 
+	position: relative
+	overflow: hidden
+	min-height: 100%
+
+.wrapper
+	position: relative
+	max-width: 1212px
+	min-width: 320px
+	padding: 0 15px
+	margin-right: auto 
+	margin-left: auto
+	+clr
+
+h1 
+	padding: 10px 0 15px
+	color: #017f5a
+	text-transform: uppercase
+	font-size: 129px
+	line-height: 104px
+	font-weight: 900
+	
+	.text-sm
+		font-size: 82px
+		line-height: 95px
+	small
+		font-size: 124px
+		line-height: 99px
+h3 
+	padding: 15px 0
+	color: #434551
+	font-size: 33px
+	font-weight: 700
+	line-height: 35px
+
+blockquote
+	position: relative
+	padding: 25px 40px
+	margin-bottom: 35px
+	color: #434551
+	font-size: 25px
+	font-weight: 700
+	line-height: 31px
+	&:before 
+		content: '['
+		display: block
+		position: absolute
+		left: 0
+		top: 0
+		color: #1a9a74
+		font-size: 125px
+		font-weight: 300
+		line-height: 95px
+
+.text-left
+	text-align: left !important
+
+.text-right
+	text-align: right !important
+
+.text-success
+	color: #017f5a
+
+.link-br 
+	display: inline-block
+	line-height: 25px
+	border-bottom: 2px solid #017f5a
+	&:hover 
+		border-bottom-color: transparent
+/* 2. ICONS ================== */
+.ic 
+	position: relative
+	display: inline-block
+	vertical-align: middle
+	background: $icons no-repeat
+
+@each $i in next, prev
+	.ic--#{$i}
+		+s(ic--#{$i})
+
+
+/* 2. BUTTON ================== */
+
+
+.btn, a.btn 
+	display: inline-block
+	vertical-align: middle
+	text-align: center
+	padding: 9px 12px 0
+	height: 40px
+	color: #434551 
+	font: 700 17px/17px  "Proxima Nova", Arial, sans-serif
+	+tr(all 0.2s linear)
+	background-color: transparent
+	+border-radius(8px)
+	border: 3px solid #a3a3a3
+	&:hover 
+		border-color: #017f5a
+
+
+input[type="submit"].btn, button.btn
+	padding-top: 0
+
+
+/* 3. FORM ================== */
+
+input[type="text"],
+input[type="password"],
+input[type="tel"],
+input[type="email"],
+textarea
+	height: 40px
+	padding: 0 15px
+	font: normal 14px/14px Arial, sans-serif
+	color: #000
+	background: #fff 
+	border: 1px solid #ccc
+	&.form-control
+		display: block
+		width: 100%
+
+textarea
+	resize: none 
+	height: auto
+	min-height: 100px
+	padding-top: 10px
+
+label 
+	display: block
+
+
+/* 4. HEADER ================== */
+.header 
+	position: absolute
+	left: 0
+	top: 0
+	width: 100%
+	&__top
+		padding: 35px 0 20px
+		+df 
+		+jc
+	&__bottom
+		border-bottom: 1px solid #dedede
+	.list-lang
+		padding-top: 9px
+	.address
+		width: 240px
+
+.address
+	color: #636363
+	font-size: 13px
+	font-style: normal
+	line-height: 15px
+
+.circle
+	display: inline-block
+	vertical-align: top
+	color: #262729
+	font-size: 12px
+	font-weight: 600
+	line-height: 17px
+	& + .circle
+		margin-left: 8px
+	&:before 
+		content: ''
+		display: inline-block
+		vertical-align: middle
+		width: 8px
+		height: 8px
+		margin-right: 2px
+		background-color: #2d71cf
+		+border-radius(50%)
+	&:nth-child(2):before
+		background-color: #7218b2
+
+.list-lang 
+	list-style: none
+	&__item 
+		display: inline-block
+		vertical-align: top
+		margin-right: -4px
+		&.active .list-lang__link 
+			color: $g-color
+			background-color: #ededed
+		& + .list-lang__item 
+			margin-left: 10px
+	&__link 
+		display: block
+		height: 32px
+		width: 32px
+		padding-top: 10px
+		font-size: 14px
+		font-weight: 700
+		text-transform: uppercase
+		text-align: center
+		color: #c3c3c3
+		+border-radius(50%)
+		&:hover 
+			color: $g-color
+		
+.file 	
+	display: block
+	width: 170px
+	height: 41px
+	padding: 5px 11px
+	background-color: #ffffff
+	+box-shadow(0 0 10px rgba(0, 0, 0, 0.08))
+	+border-radius(3px)
+	border: 1px solid #eee
+	&__type 
+		position: relative
+		z-index: 1
+		display: inline-block
+		vertical-align: middle
+		margin-right: -4px
+		width: 60px
+		color: #1b9c76
+		font-size: 32px
+		line-height: 32px
+		font-weight: 900
+		text-transform: uppercase
+	&__name 
+		display: inline-block
+		vertical-align: middle
+		margin-right: -4px
+		width: 100%
+		margin-left: -60px
+		padding-left: 70px
+		color: rgba(38,39,41,0.57)
+		font-size: 11px
+		font-weight: 400
+		line-height: 14px
+		text-transform: uppercase
+
+.phone 
+	padding-top: 8px
+	padding-right: 53px
+	text-align: right
+	background: url("../img/telephone.png") no-repeat right top
+	&__text 
+		text-transform: uppercase
+		color: #262729
+		font-size: 16px
+		line-height: 16px
+		font-weight: 400
+		strong
+			display: inline-block
+			vertical-align: middle
+			margin-left: 4px
+			color: $g-color
+			font-size: 32px
+			line-height: 30px
+			font-weight: 700
+	&__link 
+		display: inline-block
+		color: #262729
+		font-size: 12px
+		border-bottom: 1px solid #c9c9c9
+		&:hover 
+			border-color: transparent
+
+.navbar 	
+	padding: 13px 0
+	background: $g-color
+	&.fixed 
+		position: fixed
+		left: 0
+		width: 100%
+		top: 0
+		+tr(all 0.5s linear)
+	&-menu 
+		list-style: none
+		+df
+		+jc
+		&__item
+			display: inline-block
+			position: relative
+			min-height: 28px
+			&--advice
+				padding-left: 50px
+				background: url("../img/speech.png") no-repeat left center
+				.navbar-menu__link 
+					color: #f2ed9f
+					&:hover 
+						color: #fff
+			&:before 
+				content: ''
+				position: absolute
+				left: 0
+				margin-left: -21px
+				width: 1px
+				height: 28px
+				background: rgba(255,255,255,0.15)
+
+			&:first-child, &--advice
+				&:before 
+					display: none
+
+		&__link 
+			color: #ffffff
+			font-size: 25px
+			font-weight: 700
+			line-height: 28px
+			&:hover 
+				color: #f2ed9f
+
+.panel 
+	padding: 15px 0
+	+df 
+	+jc
+	-webkit-flex-wrap: wrap
+	flex-wrap: wrap
+	&__text 
+		color: #262729
+		font-size: 18px
+		font-weight: 700
+		line-height: 34px
+	&__link 
+		display: inline-block
+		line-height: 25px
+		border-bottom: 2px solid #017f5a
+		&:hover 
+			border-bottom-color: transparent
+
+.social 
+	+df
+	&-list 
+		list-style: none
+		+df
+		&__link 
+			+df 
+			+align-items
+			width: 33px
+			height: 33px
+			margin: 0 1px
+			background-color: transparent
+			border: 2px solid transparent
+			+border-radius(50%)
+			span 
+				display: block
+				width: 25px
+				height: 25px
+				background: #8d8d8d
+				+border-radius(50%)
+				color: #fff
+				font-size: 18px
+				font-weight: 700
+				line-height: 25px
+				text-align: center
+			&:hover 
+				border-color: #2b47c2
+				background-color: #FFF
+				span 
+					background-color: #2b47c2
+	&__title 
+		color: #616264
+		font-size: 18px
+		font-weight: 700
+		line-height: 34px
+		margin-right: 8px
+
+
+/* 5. CONTENT ================== */
+
+.content
+	width: 100%
+	
+.section:not(.home)
+	padding-top: 55px !important
+
+/* 6. FOOTER ================== */
+footer 
+	position: absolute
+	left: 0
+	width: 100%
+	bottom: 0
+
+
+/* 7. MEDIA ================== */
+
+
+
+
+
