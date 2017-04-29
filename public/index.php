@@ -1,28 +1,15 @@
 <?php
 
-$query = $_SERVER['QUERY_STRING'];
+$query = rtrim($_SERVER['QUERY_STRING'], '/');
+// $query = preg_quote($query, '/');
 
 require '../core/Router.php';
 require '../libs/functions.php';
+require '../app/controllers/Main.php';
+require '../app/controllers/Posts.php';
+require '../app/controllers/PostsNews.php';
 
-Router::add('posts/add', ['controller' => 'Posts', 'action' => 'add']);
+Router::add('^$', ['controller' => 'Main', 'action' => 'index']);
+Router::add('^(?P<controller>[a-z-]+)/?(?P<action>[a-z-]+)?$');
 
-vd(Router::getRoutes());
-
-
-// FRONT CONTROLLER
-
-// Общие настройки
-// ini_set('display_errors',1);
-// error_reporting(E_ALL);
-
-// session_start();
-
-// // Подключение файлов системы
-// define('ROOT', dirname(__FILE__));
-// require_once(ROOT . '/components/Autoload.php');
-
-
-// // Вызов Router
-// $router = new Router();
-// $router->run();
+Router::dispatch($query);
