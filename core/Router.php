@@ -65,6 +65,7 @@ class Router
 				if (empty($route['action'])) {
 					$route['action'] = 'index';
 				}
+				$route['controller'] = self::upperCamelCase( $route['controller'] );
 				self::$route = $route;
 				return true;
 			}
@@ -80,11 +81,10 @@ class Router
 	public static function dispatch($url)
 	{
 		if ( self::matchRoute($url) ) {
-			$controller = 'app\controllers\\' . self::upperCamelCase( self::$route['controller'] );
-			vd(self::$route);
+			$controller = 'app\controllers\\' . self::$route['controller'];
  
 			if (class_exists($controller)) {
-				$cObj = new $controller;
+				$cObj = new $controller(self::$route);
 				$action = self::lowerCamelCase( self::$route['action']) . 'Action';
 
 				if ( method_exists($cObj, $action)) {
@@ -97,6 +97,7 @@ class Router
 			} else {
 				echo "Контроллер <b>$controller</b> не найден";
 			}
+			
 		} else {
 			http_response_code(404);
 			include '404.html';
@@ -109,7 +110,7 @@ class Router
 	protected static function upperCamelCase($name)
 	{
 		$name = str_replace('-', ' ', $name);
-		return $name = str_replace(' ', '', ucwords($name));
+		return str_replace(' ', '', ucwords($name));
 	}
 
 	/**
