@@ -5,7 +5,7 @@ namespace app\controllers;
 /**
  * Для общего функционала
  */
-class App extends \core\base\Controller
+class AppController extends \core\base\Controller
 {
 	
 }
