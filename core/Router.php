@@ -1,5 +1,7 @@
 <?php
 
+namespace core;
+
 /**
  * 
  */
@@ -78,7 +80,8 @@ class Router
 	public static function dispatch($url)
 	{
 		if ( self::matchRoute($url) ) {
-			$controller = self::upperCamelCase( self::$route['controller'] );
+			$controller = 'app\controllers\\' . self::upperCamelCase( self::$route['controller'] );
+			vd(self::$route);
  
 			if (class_exists($controller)) {
 				$cObj = new $controller;

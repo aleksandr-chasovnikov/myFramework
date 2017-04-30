@@ -1,25 +1,27 @@
 <?php
 
+namespace app\controllers;
+
 /**
 * 
 */
 class Main
 {
 	public function indexAction() {
-		echo 'Main->index';
+		vd ('Main->index');
 	}
 
 	/**
 	 * @return
 	 */
 	public function testAction() {
-		echo 'Main->test';
+		vd( 'Main->test');
 	}
 
 	/**
 	 * @return
 	 */
 	public function testPageAction() {
-		echo 'Main->testPage';
+		vd( 'Main->testPage');
 	}
 }

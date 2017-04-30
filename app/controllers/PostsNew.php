@@ -1,33 +1,38 @@
 <?php
 
-class PostsNews
+namespace app\controllers;
+
+/**
+* 
+*/
+class PostsNew
 {
 	/**
 	 * @return
 	 */
 	public function indexAction() {
-		echo 'PostsNews->index';
+		echo 'PostsNew->index';
 	}
 
 	/**
 	 * @return
 	 */
 	public function testAction() {
-		echo 'PostsNews->test';
+		echo 'PostsNew->test';
 	}
 
 	/**
 	 * @return
 	 */
 	public function testPageAction() {
-		echo 'PostsNews->testPage';
+		echo 'PostsNew->testPage';
 	}
 
 	/**
 	 * @return
 	 */
 	public function before() {
-		echo 'PostsNews->before';
+		echo 'PostsNew->before';
 	}
 	
 }
