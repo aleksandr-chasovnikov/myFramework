@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Макет без Bootstrap</title>
+  <title>DEFAULT</title>
 <!--   <link rel="stylesheet" href="css/font-awesome/font-awesome.min.css">
   <link rel="stylesheet" href="css/bootstrap3/bootstrap.min.css"> -->
-  <link href="css/screen.css" rel="stylesheet">
+  <link href="/css/screen.css" rel="stylesheet">
 </head>
 <body>
     <div class="wrapper">
@@ -31,14 +31,22 @@
 
           <article class="article__item item">
             <img src="" alt="image" class="item__img">
-            <p class="item__description">Lorem ipsum dolor sit amet.</p>
+            <p class="item__description">
+
+              <?=__FILE__?>
+
+            </p>
             <a href="#" class="item__link item__link_more">Lorem</a>
             <a href="#" class="item__link">Lorem</a>
           </article>
 
           <article class="article__item item">
             <img src="" alt="image" class="item__img">
-            <p class="item__description">Lorem ipsum dolor sit amet.</p>
+            <p class="item__description">
+
+              <?=__FILE__?>
+
+            </p>
             <a href="#" class="item__link item__link_more">Lorem</a>
             <a href="#" class="item__link">Lorem</a>
           </article>
@@ -69,21 +77,17 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/my.js"></script>
-    <script src="libs/fancybox/jquery.fancybox.pack.js"></script>
-    <script src="libs/waypoints/waypoints-1.6.2.min.js"></script>
-    <script src="libs/scrollto/jquery.scrollTo.min.js"></script>
-    <script src="libs/owl-carousel/owl.carousel.min.js"></script>
-    <script src="libs/countdown/jquery.plugin.js"></script>
-    <script src="libs/countdown/jquery.countdown.min.js"></script>
-    <script src="libs/countdown/jquery.countdown-ru.js"></script>
-    <script src="libs/landing-nav/navigation.js"></script>
-    <script src="js/common.js"></script>
-    <!-- Yandex.Metrika counter --><!-- /Yandex.Metrika counter -->
-    <!-- Google Analytics counter --><!-- /Google Analytics counter -->
-    <script src="js/custom.js"></script>
-
+<script src="/template/js/my.js"></script>
+<script>
+    $(document).ready(function(){
+        $(".add-to-cart").click(function () {
+            var id = $(this).attr("data-id");
+            $.post("/cart/addAjax/"+id, {}, function (data) {
+                $("#cart-count").html(data);
+            });
+            return false;
+        });
+    });
+</script>
   </body>
   </html>

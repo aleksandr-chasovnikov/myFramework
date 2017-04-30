@@ -5,7 +5,7 @@ namespace app\controllers;
 /**
  * 
  */
-class Page extends \core\base\Controller
+class Page extends App
 {
 	public function viewAction()
 	{

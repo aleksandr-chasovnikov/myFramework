@@ -16,7 +16,7 @@
 /*box-shadow: inset(тень внутри) <сдвиг по x> <сдвиг по y> <радиус размытия> <растяжение> <цвет>*/
 body {
   font-family: Tahoma, fontRegular, sans-serif;
-  // background: url(../img/bg.png) repeat #353535;
+  /* background: url(../img/bg.png) repeat #353535;*/
   background-attachment: fixed;
   font-size: 1.2em;
   overflow-x: hidden;

@@ -5,7 +5,7 @@ namespace app\controllers;
 /**
 * 
 */
-class Posts extends \core\base\Controller
+class Posts extends App
 {
 	/**
 	 * @return

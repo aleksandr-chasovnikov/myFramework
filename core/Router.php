@@ -14,7 +14,7 @@ class Router
 	protected static $routes = [];
 
 	/**
-	 * Текщий маршрут
+	 * Текущий маршрут
 	 * @var array
 	 */
 	protected static $route = [];
@@ -91,6 +91,7 @@ class Router
 
 				if ( method_exists($cObj, $action)) {
 					$cObj->$action();
+					$cObj->getView();
 
 				} else {
 					echo "Метод <b>$controller::$action</b> не найден";
@@ -107,7 +108,8 @@ class Router
 	}
 
 	/**
-	 * 
+	 * Форматирует строку
+	 * @return string
 	 */
 	protected static function upperCamelCase($name)
 	{
@@ -116,7 +118,8 @@ class Router
 	}
 
 	/**
-	 * 
+	 * Форматирует строку
+	 * @return string
 	 */
 	protected static function lowerCamelCase($name)
 	{
@@ -124,7 +127,8 @@ class Router
 	}
 
 	/**
-	 * 
+	 * Отсекает явные GET-параметры из URL
+	 * @return string 
 	 */
 	protected static function removeQueryString($url)
 	{
@@ -139,4 +143,5 @@ class Router
 			}
 		}
 	}
+	
 } 

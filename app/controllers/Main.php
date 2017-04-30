@@ -5,23 +5,34 @@ namespace app\controllers;
 /**
 * 
 */
-class Main
+class Main extends App
 {
-	public function indexAction() {
-		vd ('Main->index');
+	/**
+	 * 
+	 */
+	// public $layout = 'main';
+
+	/**
+	 * 
+	 */
+	public function indexAction()
+	{
+		// $this->layout = false;
+		// $this->layout = 'default';
+		// $this->view = 'test';
+		$name = 'Dania';
+		$this->set(['name' => $name]);
 	}
 
 	/**
 	 * @return
 	 */
 	public function testAction() {
-		vd( 'Main->test');
 	}
 
 	/**
 	 * @return
 	 */
 	public function testPageAction() {
-		vd( 'Main->testPage');
 	}
 }
