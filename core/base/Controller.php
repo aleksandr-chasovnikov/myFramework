@@ -15,12 +15,12 @@ abstract class Controller
 
 	/**
 	 * Вид
-	 * @var array
+	 * @var object
 	 */
 	public $view;
 
 	/**
-	 * Текущий шаблон
+	 * Адрес текущего шаблона
 	 * @var string
 	 */
 	public $layout;
@@ -42,6 +42,7 @@ abstract class Controller
 
 	/**
 	 * Подключает вид
+	 * Cоздает объект View
 	 */
 	public function getView()
 	{
@@ -51,6 +52,7 @@ abstract class Controller
 
 	/**
 	 * Заполняет свойства
+	 * @param array $vars
 	 */
 	public function set($vars)
 	{

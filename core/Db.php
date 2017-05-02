@@ -1,68 +1,94 @@
-<?php 
+<?php
 
 namespace core;
 
 /**
+ * Подключается к БД
+ * и выполняет SQL-запросы
  * 
+ * @todo СДЕЛАТЬ МЕТОДЫ __clone, __wauld и др.
  */
 class Db
 {
-	/**
-	 * @var object
-	 */
-	protected $pdo;
+    /**
+     * Содержит экземпляр PDO
+     * @var object
+     */
+    protected $pdo;
+    /**
+     * Содержит экземпляр self
+     * @var object
+     */
+    protected static $instance;
+    /**
+     * Содержит количество SQL-запросов
+     * @var integer
+     */
+    public static $countSQL = 0;
+    /**
+     * Содержит все SQL-запросы
+     * @var array
+     */
+    public static $queries = [];
 
-	/**
-	 * @var
-	 */
-	protected static $instance;
+    /**
+     * Создание экземпляр PDO
+     */
+    protected function __construct()
+    {
+    	$db = require ROOT . "/config/config_db.php";
+    	$options = [
+    	\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
+    	\PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC,
+    	];
+    	$this->pdo = new \PDO($db['dsn'], $db['user'], $db['pass'], $options);
+    }
 
-	/**
-	 * 
-	 */
-	protected function _construct()	
-	{
-		$db = require ROOT . "/config/config_db.php";
-		$this->pdo = mew \PDO($db['dsn'], $db['user'], $db['pass']);
-	}
+    /**
+     * Возращает текущий или новый объект self
+     * @return
+     */
+    public static function instance()
+    {
+    	if ( self::$instance === null ) {
+    		self::$instance = new self;
+    	}
+    	return self::$instance;
+    }
 
-	/**
-	 * 
-	 * @return
-	 */
-	public static function instance()
-	{
-		if (self::$instance ===null) {
-			self::$instance = new self;
-		}
-		return self::$instance;
-	}
+    /**
+     * Выполняет SQL-запрос без запращивания данных
+     * Редактирование таблиц
+     * @param string $sql
+     * @param array $params
+     * @return boolean 
+     */
+    public function executeDb($sql, $params = [])
+    {
+    	self::$countSQL++;
+    	self::$queries[] = $sql;
+    	$stmt = $this->pdo->prepare($sql);
+    	return $stmt->execute($params);
+    }
 
-	/**
-	 * Выполняет запрос без данных
-	 * @param string $sql
-	 * @return boolean 
-	 */
-	public function execute($sql)
-	{
-		$stmt = $this->pdo->prepare($sql);
-		return $stmt->execute();
-	}
+    /**
+     * Выполняет SQL-запрос
+     * @param string $sql
+     * @param array $params
+     * @return array 
+     */
+    public function queryDb($sql, $params = [])
+    {
+    	self::$countSQL++;
+    	self::$queries[] = $sql;
+    	$stmt = $this->pdo->prepare($sql);
+    	$res = $stmt->execute($params);
 
-	/**
-	 * Выполняет запрос
-	 * @param string $sql
-	 * @return boolean 
-	 */
-	public function query($sql)
-	{
-		$stmt = $this->pdo->prepare($sql);
-		$res = $stmt->execute();
-
-		if ($res !== false) {
-			return $stmr->fetchAll();
-		}
-		return [];
-	}
+    	if ( $res !== false ) {
+    		return $stmt->fetchAll();
+        } else {   //Возможно else - лишнее
+        	return [];
+        }
+    }
 
 }

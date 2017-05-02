@@ -3,7 +3,7 @@
 namespace core\base;
 
 /**
- * 
+ * Создает представление
  */
 class View
 {
@@ -15,18 +15,21 @@ class View
 
 	/**
 	 * Текущий вид
-	 * @var string
+	 * @var array
 	 */
 	public $view = [];
 
 	/**
-	 * Текущий шаблон
+	 * Адрес текущего шаблона
 	 * @var string
 	 */
 	public $layout;
 
 	/**
-	 * 
+	 * Конструктор
+	 * @param array $route
+	 * @param string $layout
+	 * @param array $view
 	 */
 	public function __construct($route, $layout = '', $view = '') 
 	{
@@ -42,7 +45,7 @@ class View
 	}
 
 	/**
-	 * Подключает вид
+	 * Отображение
 	 */
 	public function render($vars)
 	{

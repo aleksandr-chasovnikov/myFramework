@@ -7,25 +7,23 @@ use core\Router;
 $query = rtrim($_SERVER['QUERY_STRING'], '/');
 
 define('WEB', __DIR__);
-define('ROOT', dirname(__DIR__) );
+define('ROOT', dirname(__DIR__));
 define('CORE', dirname(__DIR__) . '/core');
 define('APP', dirname(__DIR__) . '/app');
 define('LAYOUT', 'default');
 
-
 require '../libs/functions.php';
 
-spl_autoload_register( 
 
-	function($class) {
-		$file = ROOT . '/' . str_replace('\\', '/', $class) . '.php';
+spl_autoload_register(
+        function($class) {
+    $file = ROOT . '/' . str_replace('\\', '/', $class) . '.php';
 
-		if ( is_file($file) ) {
-			require_once $file;	
-				
-		} else {
-			echo "Класс <b>$class</b> не найден";
-		}
+    if (is_file($file)) {
+        require_once $file;
+    } else {
+        echo "Класс <b>$class</b> не найден";
+    }
 });
 
 // Маршруты для контроллера Page

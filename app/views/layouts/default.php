@@ -27,13 +27,16 @@
 
       </header><!-- HEADER END ============ --> 
       <main class="content"><!-- MAIN ============= -->
+
         <section class="my-contain">
 
         <?=$content?>
+        <?= vd(\core\Db::$countSQL);?>
+        <?= vd(\core\Db::$queries);?>
 
-      </section><!-- container -->                                
+      </section><!-- container -->
+
     </main><!-- MAIN END =============== -->
-
     <footer class="footer"><!-- FOOTER =============== -->
       <div class="footer__logo logo">
         <img src="" alt="logo" class="logo__img logo__img_small">

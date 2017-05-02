@@ -3,145 +3,145 @@
 namespace core;
 
 /**
- * 
+ * Маршрутизатор
+ * Обрабатывает строку запроса и перенаправляет пользователя
+ *  на подходящий контроллер
  */
 class Router
 {
-	/**
-	 * Таблица маршрутов
-	 * @var array
-	 */
-	protected static $routes = [];
+    /**
+     * Таблица маршрутов
+     * @var array
+     */
+    protected static $routes = [];
+    /**
+     * Текущий маршрут
+     * @var array
+     */
+    protected static $route = [];
 
-	/**
-	 * Текущий маршрут
-	 * @var array
-	 */
-	protected static $route = [];
+    /**
+     * Добавляет новый маршрут в таблицу маршрутов
+     * @param stirng $regexp имя маршрута
+     * @param array $new_route новый маршрут
+     */
+    public static function add($regexp, $new_route = [])
+    {
+        self::$routes[$regexp] = $new_route;
+    }
 
-	/**
-	 * Добавляет маршрут в таблицу маршрутов
-	 * @param stirng $regexp регулярное выражение маршрута
-	 * @param array $route маршрут
-	 */
-	public static function add($regexp, $route = [])
-	{
-		self::$routes[$regexp] = $route; 
-	}
+    /**
+     * Возращает таблицу маршрутов
+     */
+    public static function getRoutes()
+    {
+        return self::$routes;
+    }
 
-	/**
-	 * Возращает список шаблонов для маршрутов
-	 */
-	public static function getRoutes()
-	{
-		return self::$routes;
-	}
+    /**
+     * Возращает текущий маршрут
+     */
+    public static function getRoute()
+    {
+        return self::$route;
+    }
 
-	/**
-	 * Возращает текущий маршрут
-	 */
-	public static function getRoute()
-	{
-		return self::$route;
-	}
+    /**
+     * Ищет совпадения с маршрутами и заполняет текущий маршрут self::$route
+     * @param string $url (строка запроса)
+     * @return boolean
+     */
+    public static function matchRoute($url)
+    {
+        foreach (self::$routes as $pattern => $route) {
 
-	/**
-	 * Ищет совпадения с маршрутами
-	 * @param string $url (строка запроса)
-	 * @return boolean
-	 */
-	public static function matchRoute($url)
-	{
-		foreach(self::$routes as $pattern => $route) {
+            if ( preg_match("#$pattern#i", $url, $matches) ) {
 
-			if (preg_match("#$pattern#i", $url, $matches)) {
+                foreach ($matches as $k => $v) {
 
-				foreach ($matches as $k => $v) {
+                    if ( !is_numeric($k) && is_string($k) ) {
+                        $route[$k] = $v;
+                    }
+                }
 
-					if (!is_numeric($k) && is_string($k)) {
-						$route[$k] = $v;
-					}
-				}
-				if (empty($route['action'])) {
-					$route['action'] = 'index';
-				}
-				$route['controller'] = self::upperCamelCase( $route['controller'] );
-				self::$route = $route;
-				return true;
-			}
-		}
-		return false; 
-	}
+                if ( empty($route['action']) ) {
+                    $route['action'] = 'index';
+                }
 
-	/**
-	 * Перенаправляет URL по корректному адресу
-	 * @param string $url входящий URL
-	 * @return void
-	 */
-	public static function dispatch($url)
-	{
-		$url = self::removeQueryString($url);
+                $route['controller'] = self::upperCamelCase($route['controller']);
+                self::$route = $route;
+                return true;
+            }
+        }
+        return false;
+    }
 
-		if ( self::matchRoute($url) ) {
-			$controller = 'app\controllers\\' . self::$route['controller'] . 'Controller';
- 
-			if (class_exists($controller)) {
-				$cObj = new $controller(self::$route);
-				$action = self::lowerCamelCase( self::$route['action']) . 'Action';
+    /**
+     * Отсекает явные GET-параметры из URL
+     * @param string $url (входящий URL)
+     * @return string
+     */
+    protected static function removeQueryString($url)
+    {
+        if ( $url ) {
+            $params = explode('&', $url, 2);
 
-				if ( method_exists($cObj, $action)) {
-					$cObj->$action();
-					$cObj->getView();
+            if ( false === strpos($params[0], '=') ) {
+                return rtrim($params[0], '/');
+            } else {
+                return '';
+            }
+        }
+    }
 
-				} else {
-					echo "Метод <b>$controller::$action</b> не найден";
-				}
+    /**
+     * Форматирует строку c именем контроллера
+     * @return string
+     */
+    protected static function upperCamelCase($name)
+    {
+        $name = str_replace('-', ' ', $name);
+        return str_replace(' ', '', ucwords($name));
+    }
 
-			} else {
-				echo "Контроллер <b>$controller</b> не найден";
-			}
-			
-		} else {
-			http_response_code(404);
-			include '404.html';
-		}
-	}
+    /**
+     * Форматирует строку с именем экшена
+     * @return string
+     */
+    protected static function lowerCamelCase($name)
+    {
+        return lcfirst(self::upperCamelCase($name));
+    }
 
-	/**
-	 * Форматирует строку
-	 * @return string
-	 */
-	protected static function upperCamelCase($name)
-	{
-		$name = str_replace('-', ' ', $name);
-		return str_replace(' ', '', ucwords($name));
-	}
+    /**
+     * Перенаправляет URL по корректному адресу
+     * @param string $url (входящий URL)
+     * @return void
+     */
+    public static function dispatch($url)
+    {
+        $url = self::removeQueryString($url);
 
-	/**
-	 * Форматирует строку
-	 * @return string
-	 */
-	protected static function lowerCamelCase($name)
-	{
-		return lcfirst(self::upperCamelCase($name));
-	}
+        if ( self::matchRoute($url) ) {
+            $controller = 'app\controllers\\' . self::$route['controller'] . 'Controller';
 
-	/**
-	 * Отсекает явные GET-параметры из URL
-	 * @return string 
-	 */
-	protected static function removeQueryString($url)
-	{
-		if ($url) {
-			$params = explode('&', $url, 2);
+            if ( class_exists($controller) ) {
+                $cObj = new $controller(self::$route);
+                $action = self::lowerCamelCase(self::$route['action']) . 'Action';
 
-			if (false === strpos($params[0], '=')) {
-				return rtrim($params[0], '/');
-				
-			} else {
-				return '';
-			}
-		}
-	}
-	
-} 
+                if ( method_exists($cObj, $action) ) {
+                    $cObj->$action();
+                    $cObj->getView();
+                } else {
+                    echo "Метод <b>$controller::$action</b> не найден";
+                }
+            } else {
+                echo "Контроллер <b>$controller</b> не найден";
+            }
+        } else {
+            http_response_code(404);
+            include '404.html';
+        }
+    }
+
+}
