@@ -14,8 +14,8 @@ abstract class Controller
 	public $route = [];
 
 	/**
-	 * Вид
-	 * @var object
+	 * Текущий action (страница)
+	 * @var string
 	 */
 	public $view;
 

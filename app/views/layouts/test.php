@@ -4,9 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title><?=$meta['title'];?></title>
-        <meta name="description" content="<?=$meta['desc']?>">
-        <meta name="keywords" content="<?=$meta['keywords']?>">
+        <title>TEST (без меню)</title>
         <!--   <link rel="stylesheet" href="css/font-awesome/font-awesome.min.css">
           <link rel="stylesheet" href="css/bootstrap3/bootstrap.min.css"> -->
         <link href="/css/screen.css" rel="stylesheet">
@@ -20,22 +18,7 @@
                         <img src="" alt="logo" class="logo__img">
                     </a>
                 </div>
-                
-                <?php if ( !empty($menu) ) : ?>
-                    <nav class="header__nav nav">
-                        <a href="#" class="nav__link nav__link_active">active</a>
-
-                        <?php foreach ($menu as $item): ?>
-
-                            <a href="category/<?= $item['id'] ?>" class="nav__link">
-                                <?= $item['title'] ?>
-                            </a>
-
-                        <?php endforeach; ?>
-
-                        <a href="#" class="nav__link nav__link_last">last</a>
-                    </nav>
-                <?php endif; ?>
+Здесь нет меню
 
             </header><!-- HEADER END ============ --> 
             <main class="content"><!-- MAIN ============= -->

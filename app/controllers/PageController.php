@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace app\controllers;
 
@@ -7,9 +7,13 @@ namespace app\controllers;
  */
 class PageController extends AppController
 {
-	public function viewAction()
-	{
-		vd($this->route);
-		echo 'Page::view';
-	}
+
+    public function viewAction()
+    {
+        $menu = \R::findAll('category');
+        $title = 'Страница';
+        $this->set(compact('title', 'menu'));
+//		vd($this->route);
+    }
+
 }
