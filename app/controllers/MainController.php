@@ -21,6 +21,8 @@ class MainController extends AppController
     {
         $model = new Main();
         $posts = \R::findAll('posts');
+        $post = \R::findOne('posts', 'id = 1');
+        vd($post);
         $menu = $this->menu;
         
 //        $res = $model->queryModel("CREATE TABLE posts SELECT * FROM post");
@@ -30,7 +32,9 @@ class MainController extends AppController
 //        $data = $model->findBySql("SELECT * FROM {$model->table} WHERE title LIKE ?", ['%qwq%']);
         
         $title = 'PAGE TITLE';
+        
         $this->setMeta('Главная страница', 'Описание страницы', 'Ключевые слова');
+//        $this->setMeta($post->title, $post->description, $post->keywords);
         $meta = $this->meta;
         $this->set(compact('title', 'posts', 'menu', 'meta'));
     }
