@@ -54,7 +54,7 @@ class Db
      */
     public static function instance()
     {
-        if ( self::$instance === null ) {
+        if ( empty( self::$instance ) ) {
             self::$instance = new self;
         }
         return self::$instance;

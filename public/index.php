@@ -11,19 +11,22 @@ define('WEB', __DIR__);
 define('ROOT', dirname(__DIR__));
 define('CORE', dirname(__DIR__) . '/core');
 define('APP', dirname(__DIR__) . '/app');
+define('CACHE', dirname(__DIR__) . '/tmp/cache');
 define('LAYOUT', 'default');
 
 require '../libs/functions.php';
 
 
-spl_autoload_register(
-        function($class) {
+spl_autoload_register( function($class) {
     $file = ROOT . '/' . str_replace('\\', '/', $class) . '.php';
+//    $file = str_replace('\\', '/', $class) . '.php';
 
     if (is_file($file)) {
         require_once $file;
     }
 });
+
+new \core\App;
 
 // Добавляем маршруты для контроллера Page
 Router::add('^page/(?P<action>[a-z-]+)/(?P<alias>[a-z-]+)$', ['controller' => 'Page']);

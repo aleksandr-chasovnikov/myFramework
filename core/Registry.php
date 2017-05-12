@@ -1,30 +1,15 @@
 <?php
 
-$config = [
-    'components' => [
-        'cache' => 'classes\Cache',
-        'test' => 'classes\Test',
-    ],
-];
-
-spl_autoload_register(
-        function($class) {
-    $file = str_replace('\\', '/', $class) . '.php';
-
-    if (is_file($file)) {
-        require_once $file;
-    }
-});
+namespace core;
 
 /**
- * Description of index
+ * Description of Registry
  *
  * @author User
  */
 class Registry
 {
-    /**
-     *
+    /***
      * @var array
      */
     public static $objects = [];
@@ -39,7 +24,7 @@ class Registry
      */
     protected function __construct()
     {
-        global $config;
+        require_once ROOT . '/config/config.php';;
 
         foreach ( $config['components'] as $name => $component ) {
             self::$objects[$name] = new $component;
@@ -85,7 +70,3 @@ class Registry
     }
 
 }
-
-$app = Registry::instance();
-//$app->getList();
-$app->test->go();
