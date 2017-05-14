@@ -20,9 +20,17 @@ class MainController extends AppController
      */
     public function indexAction()
     {
-        App::$app->getList();
+//        App::$app->getList();
+//        \R::fancyDebug(true);
+
         $model = new Main();
         $posts = \R::findAll('posts');
+//        $posts = App::$app->cache->get('posts');
+//        if(!$posts) {
+//            $posts = \R::findAll('posts');
+//            App::$app->cache->set('posts', $posts, 3600*24);
+//        }
+
         $post = \R::findOne('posts', 'id = 1');
         $menu = $this->menu;
 

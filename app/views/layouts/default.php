@@ -20,7 +20,7 @@
                         <img src="" alt="logo" class="logo__img">
                     </a>
                 </div>
-                
+
                 <?php if ( !empty($menu) ) : ?>
                     <nav class="header__nav nav">
                         <a href="#" class="nav__link nav__link_active">active</a>
@@ -37,7 +37,7 @@
                     </nav>
                 <?php endif; ?>
 
-            </header><!-- HEADER END ============ --> 
+            </header><!-- HEADER END ============ -->
             <main class="content"><!-- MAIN ============= -->
 
                 <section class="my-contain">
@@ -54,7 +54,7 @@
 
                 <div class="copy">
                     <p class="copy text-center">&copy; Компания </p>
-                </div>      
+                </div>
             </footer><!-- FOOTER END =============== -->
 
         </div><!-- wrapper END -->
@@ -70,7 +70,7 @@
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="/template/js/my.js"></script>
+        <!--<script src="/template/js/my.js"></script>-->
         <script>
             $(document).ready(function () {
                 $(".add-to-cart").click(function () {
@@ -82,5 +82,20 @@
                 });
             });
         </script>
+<!--        <script>
+            $('#send').click(function(){
+               $.ajax({
+                  url: '/main/test/',
+                  type:'post',
+                  data: {'id': 2},
+                  succes: function(res){
+                      console.log(res);
+                  },
+                  error: function(){
+                      alert('Error!');
+                  }
+               });
+            });
+        </script>-->
     </body>
 </html>

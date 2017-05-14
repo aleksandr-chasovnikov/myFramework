@@ -106,7 +106,7 @@ html {
 }
 
 /* RESET END ================== */
-@font-face {
+/*@font-face {
   font-family: "Helvetica";
   src: url("../fonts/HelveticaBold.eot");
   src: url("../fonts/HelveticaBold.eot?#iefix") format("embedded-opentype"), url("fonts/HelveticaBold.woff2") format("woff2"), url("fonts/HelveticaBold.woff") format("woff"), url("fonts/HelveticaBold.ttf") format("truetype");
@@ -126,7 +126,7 @@ html {
   src: url("../fonts/HelveticaRegular.eot?#iefix") format("embedded-opentype"), url("fonts/HelveticaRegular.woff2") format("woff2"), url("fonts/HelveticaRegular.woff") format("woff"), url("fonts/HelveticaRegular.ttf") format("truetype");
   font-style: normal;
   font-weight: 400;
-}
+}*/
 a {
   -moz-transition: all all 0.3s linear ease;
   -o-transition: all all 0.3s linear ease;
@@ -149,8 +149,8 @@ a:active {
 }
 
 body {
-  font-family: "Helvetica", Arial, Tahoma, sans-serif;
-  background: url("../img/bg.png") no-repeat 0 0 transparent;
+/*  font-family: "Helvetica", Arial, Tahoma, sans-serif;
+  background: url("../img/bg.png") no-repeat 0 0 transparent;*/
   position: relative;
   font-size: 18px;
   font-weight: 400;
@@ -287,7 +287,7 @@ button, input[type="button"], input[type="submit"] {
   padding: 10px 20px 0;
   height: 40px;
   color: #777;
-  font: normal 16px/16px "Helvetica", Arial, sans-serif;
+  /*font: normal 16px/16px "Helvetica", Arial, sans-serif;*/
   -moz-transition: all all 0.3s linear ease;
   -o-transition: all all 0.3s linear ease;
   -webkit-transition: all all 0.3s linear ease;
@@ -432,14 +432,14 @@ label {
 }
 
 /*
-// .header 
+// .header
 //     position: absolute
 //     left: 0
 //     top: 0
 //     width: 100%
 //     &__top
 //         // padding: 35px 0 20px
-//         // @include df 
+//         // @include df
 //         // @include jc
 //     &__bottom
 //         border-bottom: 1px solid #dedede
@@ -453,7 +453,7 @@ label {
 //     line-height: 17px
 //     & @include  .circle
 //         margin-left: 8px
-//     &:before 
+//     &:before
 //         content: ''
 //         display: inline-block
 //         vertical-align: middle
@@ -465,18 +465,18 @@ label {
 //     &:nth-child(2):before
 //         background-color: #7218b2
 
-// .list-lang 
+// .list-lang
 //     list-style: none
-//     &__item 
+//     &__item
 //         display: inline-block
 //         vertical-align: top
-//         & @include  .list-lang__item 
+//         & @include  .list-lang__item
 //             margin-left: 10px
-//     &__link 
+//     &__link
 //         display: block
 //         text-align: center
-        
-// .file   
+
+// .file
 //     display: block
 //     width: 170px
 //     height: 41px
@@ -485,7 +485,7 @@ label {
 //     @include box-shadow(0 0 10px rgba(0, 0, 0, 0.08))
 //     @include border-radius(3px)
 //     border: 1px solid #eee
-//     &__type 
+//     &__type
 //         position: relative
 //         z-index: 1
 //         display: inline-block
@@ -497,7 +497,7 @@ label {
 //         line-height: 32px
 //         font-weight: 900
 //         text-transform: uppercase
-//     &__name 
+//     &__name
 //         display: inline-block
 //         vertical-align: middle
 //         margin-right: -4px
@@ -510,15 +510,15 @@ label {
 //         line-height: 14px
 //         text-transform: uppercase
 
-// .navbar     
+// .navbar
 //     padding: 13px 0
-//     &.fixed 
+//     &.fixed
 //         position: fixed
 //         left: 0
 //         width: 100%
 //         top: 0
 //         @include tr(all 0.5s linear)
-//     &-menu 
+//     &-menu
 //         list-style: none
 //         // @include df
 //         // @include jc
@@ -529,11 +529,11 @@ label {
 //             &--advice
 //                 padding-left: 50px
 //                 background: url("../img/speech.png") no-repeat left center
-//                 .navbar-menu__link 
+//                 .navbar-menu__link
 //                     color: #f2ed9f
-//                     &:hover 
+//                     &:hover
 //                         color: #fff
-//             &:before 
+//             &:before
 //                 content: ''
 //                 position: absolute
 //                 left: 0
@@ -542,41 +542,41 @@ label {
 //                 height: 28px
 //                 background: rgba(255,255,255,0.15)
 //             &:first-child, &--advice
-//                 &:before 
+//                 &:before
 //                     display: none
-//         &__link 
+//         &__link
 //             color: #ffffff
 //             font-size: 25px
 //             font-weight: 700
 //             line-height: 28px
-//             &:hover 
+//             &:hover
 //                 color: #f2ed9f
 
-// .panel 
+// .panel
 //     padding: 15px 0
-//     // @include df 
+//     // @include df
 //     // @include jc
 //     -webkit-flex-wrap: wrap
 //     flex-wrap: wrap
-//     &__text 
+//     &__text
 //         color: #262729
 //         font-size: 18px
 //         font-weight: 700
 //         line-height: 34px
-//     &__link 
+//     &__link
 //         display: inline-block
 //         line-height: 25px
 //         border-bottom: 2px solid #017f5a
-//         &:hover 
+//         &:hover
 //             border-bottom-color: transparent
 
-// .social 
+// .social
 //     // @include df
-//     &-list 
+//     &-list
 //         list-style: none
 //         // @include df
-//         &__link 
-//             // @include df 
+//         &__link
+//             // @include df
 //             // @include align-items
 //             width: 33px
 //             height: 33px
@@ -584,7 +584,7 @@ label {
 //             background-color: transparent
 //             border: 2px solid transparent
 //             @include border-radius(50%)
-//             span 
+//             span
 //                 display: block
 //                 width: 25px
 //                 height: 25px
@@ -595,12 +595,12 @@ label {
 //                 font-weight: 700
 //                 line-height: 25px
 //                 text-align: center
-//             &:hover 
+//             &:hover
 //                 border-color: #2b47c2
 //                 background-color: #FFF
-//                 span 
+//                 span
 //                     background-color: #2b47c2
-//     &__title 
+//     &__title
 //         color: #616264
 //         font-size: 18px
 //         font-weight: 700
